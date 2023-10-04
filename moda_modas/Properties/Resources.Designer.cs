@@ -63,6 +63,26 @@ namespace moda_modas.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _0665dcd4f5c2c0daecf76c44f72ac6d0 {
+            get {
+                object obj = ResourceManager.GetObject("0665dcd4f5c2c0daecf76c44f72ac6d0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _7dc78e410cda576c4c8e1fa35ba7fa74 {
+            get {
+                object obj = ResourceManager.GetObject("7dc78e410cda576c4c8e1fa35ba7fa74", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap df040ff88dfdd3ae6faf40729f5211f8 {
             get {
                 object obj = ResourceManager.GetObject("df040ff88dfdd3ae6faf40729f5211f8", resourceCulture);

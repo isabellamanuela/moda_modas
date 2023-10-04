@@ -12,7 +12,7 @@ namespace moda_modas
     {
         //Propriedades ou atributos
         private readonly SqlConnection con;
-        private readonly string DataBase = "modas_modas";
+        private readonly string DataBase = "isamodas";
 
         //Construtor
         public Connection()                            //LAPTOP-9TN8R1CF\SQLEXPRESS
