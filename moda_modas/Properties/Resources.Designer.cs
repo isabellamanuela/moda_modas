@@ -73,6 +73,96 @@ namespace moda_modas.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _0677a86a27ec0ea98a94913278db54d3 {
+            get {
+                object obj = ResourceManager.GetObject("0677a86a27ec0ea98a94913278db54d3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f1 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f2 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f3 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f4 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f5 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f6 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _47d8b87c99a0aa1b9d1972e68bda295f7 {
+            get {
+                object obj = ResourceManager.GetObject("47d8b87c99a0aa1b9d1972e68bda295f7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _7dc78e410cda576c4c8e1fa35ba7fa74 {
             get {
                 object obj = ResourceManager.GetObject("7dc78e410cda576c4c8e1fa35ba7fa74", resourceCulture);

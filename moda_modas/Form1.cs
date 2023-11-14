@@ -26,34 +26,58 @@ namespace moda_modas
         }
         private void UpdateListView()
         {
+
             listaView.Items.Clear();
-            Connection conn = new Connection();
-            SqlCommand sqlCom = new SqlCommand();
-            sqlCom.Connection = conn.ReturnConnection();
-            sqlCom.CommandText = "SELECT * FROM Table_2";
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            List<Usuario> Usuario = usuarioDAO.SelectUsuario();
+
             try
             {
-                SqlDataReader dr = sqlCom.ExecuteReader();
-                //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
-                while (dr.Read())
+                foreach (Usuario usuario in Usuario)
                 {
-                    int id = (int)dr["id"];
-                    string Nome = (string)dr["Nome"];
-                    string Senha = (string)dr["Senha"];
-                    ListViewItem lv = new ListViewItem(id.ToString());
-                    lv.SubItems.Add(Nome);
-                    lv.SubItems.Add(Senha);
+
+                    ListViewItem lv = new ListViewItem(usuario.Id.ToString());
+                    lv.SubItems.Add(usuario.Nome);
+                    lv.SubItems.Add(usuario.Senha);
                     listaView.Items.Add(lv);
                 }
             }
-            catch (Exception err)
+             catch(Exception err)
+
             {
                 MessageBox.Show(err.Message);
             }
-            finally
-            {
-                conn.CloseConnection();
-            }
+            
+
+            //Connection conn = new Connection();
+            //SqlCommand sqlCom = new SqlCommand();
+            //sqlCom.Connection = conn.ReturnConnection();
+            //sqlCom.CommandText = "SELECT * FROM Table_2";
+            //try
+            //{
+            //    SqlDataReader dr = sqlCom.ExecuteReader();
+            //    //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
+            //    while (dr.Read())
+            //    {
+            //        int id = (int)dr["id"];
+            //        string Nome = (string)dr["Nome"];
+            //        string Senha = (string)dr["Senha"];
+            //        ListViewItem lv = new ListViewItem(id.ToString());
+            //        lv.SubItems.Add(Nome);
+            //        lv.SubItems.Add(Senha);
+            //        listaView.Items.Add(lv);
+            //    }
+            //    dr.Close();
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show(err.Message);
+            //}
+            //finally
+            //{
+            //    conn.CloseConnection();
+            //}
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -75,39 +99,47 @@ namespace moda_modas
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //CRIAR OBJETO DA CLASSE USUARIO
+                Usuario usuario = new Usuario(
+                    id,
+                    textBox1.Text,
+                    textBox3.Text
+                    );
 
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
+                //CHAMANDO O METODO DE EXCLUSÃO
+                UsuarioDAO nomeDoObj = new UsuarioDAO();
+                nomeDoObj.UpdateUsuario(usuario);
 
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"UPDATE Table_2 SET
-            Nome  =  @textBox1.Text,
-            Senha = textBox3.Text
-            WHERE id = @id ";
-
-            sqlCommand.Parameters.AddWithValue("Nome", textBox1.Text);
-            sqlCommand.Parameters.AddWithValue("Senha", textBox3.Text);
-            sqlCommand.Parameters.AddWithValue("@id", id);
-            sqlCommand.ExecuteNonQuery();
-
-            MessageBox.Show("Cadastrado com sucesso",
+                //CAMPO DE LOGAR
+                MessageBox.Show(
+                " Login alterado com sucesso !",
                 "AVISO",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
 
               textBox1.Clear();
               textBox3.Clear();
             UpdateListView();
+
         }
         private void button4_Click(object sender, EventArgs e)
         {
+
             Connection connection = new Connection();
             SqlCommand sqlCommand = new SqlCommand();
 
             sqlCommand.Connection = connection.ReturnConnection();
             sqlCommand.CommandText = @"UPDATE Table_2 SET
             Nome     = @Nome,
-            Senha    = @Senha,
+            Senha    = @Senha
             WHERE id = @id";
 
             
@@ -117,7 +149,7 @@ namespace moda_modas
             sqlCommand.ExecuteNonQuery();
 
             MessageBox.Show(
-                " Login alterado com sucesso !",
+                " login alterado com sucesso !",
                 "AVISO",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
@@ -171,9 +203,9 @@ namespace moda_modas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            String name = textBox1.Text;
-            String senha = textBox3.Text;
-            if (name == "" && senha == "")
+            String Nome = textBox1.Text;
+            String Senha = textBox3.Text;
+            if (Nome == "" && Senha == "")
             {
                 this.Close();
                 fdp = new Thread(novoForm);
@@ -182,8 +214,8 @@ namespace moda_modas
             }
             else
             {
-               String message = "Nome: " + name +
-                                "\nSenha: " + senha;
+               String message = "Nome: " + Nome +
+                                "\nSenha: " + Senha;
                 MessageBox.Show(message, "",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
@@ -244,7 +276,10 @@ namespace moda_modas
             id = int.Parse(listaView.Items[index].SubItems[0].Text);
             textBox1.Text = listaView.Items[index].SubItems[1].Text;
             textBox3.Text = listaView.Items[index].SubItems[2].Text;
+
+            UpdateListView();
         }
+        
     }
 
 }

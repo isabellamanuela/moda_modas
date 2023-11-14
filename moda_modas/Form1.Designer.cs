@@ -39,10 +39,10 @@
             this.listaView = new System.Windows.Forms.ListView();
             this.colunaid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SENHA = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.SENHA = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Caladea", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::moda_modas.Properties.Resources._47d8b87c99a0aa1b9d1972e68bda295f7;
             this.button2.Location = new System.Drawing.Point(656, 34);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(170, 80);
@@ -133,6 +134,7 @@
             this.colunaid,
             this.nome,
             this.SENHA});
+            this.listaView.FullRowSelect = true;
             this.listaView.HideSelection = false;
             this.listaView.Location = new System.Drawing.Point(1123, 327);
             this.listaView.Name = "listaView";
@@ -150,6 +152,10 @@
             // nome
             // 
             this.nome.Text = "Nome";
+            // 
+            // SENHA
+            // 
+            this.SENHA.Text = "SENHA";
             // 
             // button4
             // 
@@ -184,10 +190,6 @@
             this.button6.Text = "delete";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // SENHA
-            // 
-            this.SENHA.Text = "SENHA";
             // 
             // editar
             // 
