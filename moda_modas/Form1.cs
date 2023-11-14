@@ -45,7 +45,6 @@ namespace moda_modas
                     lv.SubItems.Add(Senha);
                     listaView.Items.Add(lv);
                 }
-                dr.Close();
             }
             catch (Exception err)
             {
