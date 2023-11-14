@@ -15,7 +15,7 @@ namespace moda_modas
     {
         Thread fdp;
         public Form2()
-        {//PL
+        {//PLÇL.
             InitializeComponent();
         }
 
