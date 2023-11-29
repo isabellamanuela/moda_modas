@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace moda_modas
 {
@@ -15,7 +16,7 @@ namespace moda_modas
     {
         Thread fdp;
         public Form2()
-        {//PLÇL.
+        {
             InitializeComponent();
         }
 
@@ -33,7 +34,7 @@ namespace moda_modas
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
