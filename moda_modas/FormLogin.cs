@@ -19,26 +19,14 @@ namespace moda_modas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string usuario = textBox1.Text;
-            string senha = textBox2.Text;
+            Usuario usuario = new Usuario("Nome", "Senha");
+            usuario.Nome = textBox1.Text;
+            usuario.Senha = Criptografia.CriptografarSenha(textBox2.Text);
 
-            //Criar objeto da classe UsuarioDAO
-            UsuarioDAO Usuario = new UsuarioDAO();
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.LoginUsuario(usuario);
 
-            //Chamar o metodo que verifica  o Login
-
-            if (Usuario.LoginUsuario(usuario, senha)) {
-                editar tela = new editar();
-                tela.ShowDialog();
-
-            }
-            else
-            {
-                MessageBox.Show("Verifique os dados inseridos!",
-                    "ERROUUUU",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -49,6 +37,23 @@ namespace moda_modas
         private void button2_Click(object sender, EventArgs e)
         {
              
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            editar fomr1 = new editar();
+            fomr1.Show();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Form3 form3= new Form3();
+            form3.Show();
         }
     }
 }

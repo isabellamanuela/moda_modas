@@ -19,68 +19,28 @@ namespace moda_modas
     public partial class editar : Form
     {
         private int id;
-        Thread fdp;
         public editar()
         {
             InitializeComponent();
         }
         private void UpdateListView()
         {
-
             listaView.Items.Clear();
 
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            List<Usuario> Usuario = usuarioDAO.SelectUsuario();
+            List<Usuario> usuarios = usuarioDAO.SelectUsuario();
 
-            try
+            foreach (Usuario usuario in usuarios)
             {
-                foreach (Usuario usuario in Usuario)
-                {
-
-                    ListViewItem lv = new ListViewItem(usuario.Id.ToString());
-                    lv.SubItems.Add(usuario.Nome);
-                    lv.SubItems.Add(usuario.Senha);
-                    listaView.Items.Add(lv);
-                }
+                ListViewItem item = new ListViewItem(usuario.Id.ToString());
+                item.SubItems.Add(usuario.Nome);
+                item.SubItems.Add(usuario.Senha);
+                listaView.Items.Add(item);
             }
-             catch(Exception err)
-
-            {
-                MessageBox.Show(err.Message);
-            }
-            
-
-            //Connection conn = new Connection();
-            //SqlCommand sqlCom = new SqlCommand();
-            //sqlCom.Connection = conn.ReturnConnection();
-            //sqlCom.CommandText = "SELECT * FROM Table_2";
-            //try
-            //{
-            //    SqlDataReader dr = sqlCom.ExecuteReader();
-            //    //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
-            //    while (dr.Read())
-            //    {
-            //        int id = (int)dr["id"];
-            //        string Nome = (string)dr["Nome"];
-            //        string Senha = (string)dr["Senha"];
-            //        ListViewItem lv = new ListViewItem(id.ToString());
-            //        lv.SubItems.Add(Nome);
-            //        lv.SubItems.Add(Senha);
-            //        listaView.Items.Add(lv);
-            //    }
-            //    dr.Close();
-            //}
-            //catch (Exception err)
-            //{
-            //    MessageBox.Show(err.Message);
-            //}
-            //finally
-            //{
-            //    conn.CloseConnection();
-            //}
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             UpdateListView();
         }
 
@@ -99,94 +59,36 @@ namespace moda_modas
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //CRIAR OBJETO DA CLASSE USUARIO
-                Usuario usuario = new Usuario(
-                    id,
-                    textBox1.Text,
-                    textBox3.Text
-                    );
 
-                //CHAMANDO O METODO DE EXCLUSÃO
-                UsuarioDAO nomeDoObj = new UsuarioDAO();
-                nomeDoObj.UpdateUsuario(usuario);
-
-                //CAMPO DE LOGAR
-                MessageBox.Show(
-                " Login alterado com sucesso !",
-                "AVISO",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
-
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
-
-              textBox1.Clear();
-              textBox3.Clear();
-            UpdateListView();
 
         }
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
-
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"UPDATE Table_2 SET
-            Nome     = @Nome,
-            Senha    = @Senha
-            WHERE id = @id";
-
-            
-            sqlCommand.Parameters.AddWithValue("@Nome", textBox1.Text);
-            sqlCommand.Parameters.AddWithValue("@Senha", textBox3.Text);
-            sqlCommand.Parameters.AddWithValue("@id", id);
-            sqlCommand.ExecuteNonQuery();
-
-            MessageBox.Show(
-                " login alterado com sucesso !",
-                "AVISO",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
-
-
-
-            textBox1.Clear();
-            textBox3.Clear();
-            UpdateListView();
-        }
-       
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
 
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("O campo de senha está vazio. Por favor, insira uma senha válida.");
+            }
+            else if (checkBox1.Checked)
+            {
+                Usuario usuario = new Usuario("Nome", "Senha");
+                usuario.Nome = textBox1.Text;
+                usuario.Senha = Criptografia.CriptografarSenha(textBox3.Text);
 
-
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"INSERT INTO Table_2 VALUES(@Nome,@Senha)";
-
-
-
-            sqlCommand.Parameters.AddWithValue("@Nome", textBox1.Text);
-            sqlCommand.Parameters.AddWithValue("@Senha", textBox3.Text);
-            sqlCommand.ExecuteNonQuery();
-            MessageBox.Show("Cadastro com sucesso",
-                "AVISO",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
-
-
-
-            textBox1.Clear();
-            textBox3.Clear();
-            UpdateListView();
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                usuarioDAO.InsertUsuario(usuario);
+                textBox1.Clear();
+                textBox3.Clear();
+                UpdateListView();
+            }
+            else
+            {
+                MessageBox.Show("Você precisa aceitar os Termos e Condições para se cadastrar.",
+                    "AVISO",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -203,29 +105,9 @@ namespace moda_modas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            String Nome = textBox1.Text;
-            String Senha = textBox3.Text;
-            if (Nome == "" && Senha == "")
-            {
-                this.Close();
-                fdp = new Thread(novoForm);
-                fdp.SetApartmentState(ApartmentState.STA);
-                fdp.Start();
-            }
-            else
-            {
-               String message = "Nome: " + Nome +
-                                "\nSenha: " + Senha;
-                MessageBox.Show(message, "",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-                    );
-            }
+            this.Close();
         }
-        private void novoForm()
-        {
-            Application.Run(new Form2());
-        }
+
 
         private void Form1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -235,40 +117,9 @@ namespace moda_modas
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            //Código para excluir
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
-
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"DELETE FROM Table_2 WHERE id = @id";
-            sqlCommand.Parameters.AddWithValue("@id", id);
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception err)
-            {
-                throw new Exception("Erro: Problemas ao excluir usuário no banco.\n" + err.Message);
-            }
-            finally
-            {
-                connection.CloseConnection();
-            }
-
-            textBox1.Clear();
-            textBox3.Clear();
-
-            UpdateListView();
 
 
         }
-
         private void Lista_MouseDoubleClick(object sender, EventArgs e)
         {
             int index;
@@ -279,7 +130,7 @@ namespace moda_modas
 
             UpdateListView();
         }
-        
+
     }
 
 }
